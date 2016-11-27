@@ -1,0 +1,21 @@
+hostname_prefix: "infra3"
+domainname: ii.org.nz
+cloud_config:
+  coreos:
+    etcd2:
+      # Host name for cluster --name
+      name: "infra3"
+      # generate a new token for each unique cluster from https://discovery.etcd.io/new?size=3
+      discovery: "https://discovery.etcd.io/aceed337053778ca02bbe23835cf51c2"
+      # multi-region and multi-cloud deployments need to use $public_ipv4
+      initial-advertise-peer-urls: "http://192.168.1.172:2380"
+      # listen on both the official ports and the legacy ports
+      # legacy ports can be omitted if your application doesn't depend on them
+      listen-client-urls: "http://192.168.1.172:2379,http://127.0.0.1:2379"
+      listen-peer-urls: "http://192.168.1.172:2380"
+    units:
+      - name: "etcd2.service"
+        command: "start"
+  ssh_authorized_keys:
+    - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnxGbWpxBQoomQ4hD4eO5HnxM9olcoZbs70hMWHw/e5aErfyqp770GNdNe2HTWOV4pcJewCfo/F0I4xm5HIEVlEE4ml45nBMwiy9btHQ47nyXxrSln+WPpDdnv2/H154JQgrmDCrU3uj2sQGaLFGKsVZ08+XfefVC/uG056GQxco2mA/aASZ7eudPZ4lP6/Hw2O3Qz+dUW0QhYPfCUCfvb80AKpGRAwPoiWsB4AfVUKD1mXrkmVMs4LMT4GJAoIgxKcOxw5796m1YdUdsxAW62fUpO2+xUsjw7FD5HqfckqsNyijKWt9E0gZAtNDAIsOe/HGc7B9M31WK3Fy7FQjep DLX"
+install_disk: '/dev/sda'
