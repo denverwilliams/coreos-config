@@ -17,6 +17,55 @@ cloud_config:
     units:
       - name: "etcd2.service"
         command: "start"
+    write_files:
+      - path: /etc/flannel/options.env
+        owner: core:core
+        permissions: 0644
+        content: |
+          FLANNELD_IFACE=192.168.1.170
+          FLANNELD_ETCD_ENDPOINTS=http://192.168.1.170:2379,http://192.168.1.171:2379,http://192.168.1.172:2379
+      - path: /etc/systemd/system/flanneld.service.d/40-ExecStartPre-symlink.conf 
+        owner: root:root
+        permissions: 0644
+        content: |
+          [Service]
+          ExecStartPre=/usr/bin/ln -sf /etc/flannel/options.env /run/flannel/options.env
+      - path: /etc/systemd/system/docker.service.d/40-flannel.conf
+        owner: root:root
+        permissions: 0644
+        content: |
+          [Unit]
+          Requires=flanneld.service
+          After=flanneld.service
+       - path: /etc/systemd/system/kubelet.service
+         owner: root:root
+         permissions: 0644
+         content: |
+           [Service]
+           ExecStartPre=/usr/bin/mkdir -p /etc/kubernetes/manifests
+           ExecStartPre=/usr/bin/mkdir -p /var/log/containers
+
+           Environment=KUBELET_VERSION=v1.4.3_coreos.0
+           Environment="RKT_OPTS=--volume var-log,kind=host,source=/var/log \
+             --mount volume=var-log,target=/var/log \
+             --volume dns,kind=host,source=/etc/resolv.conf \
+             --mount volume=dns,target=/etc/resolv.conf"
+
+           ExecStart=/usr/lib/coreos/kubelet-wrapper \
+             --api-servers=http://127.0.0.1:8080 \
+             --network-plugin-dir=/etc/kubernetes/cni/net.d \
+             --network-plugin= \
+             --register-schedulable=false \
+             --allow-privileged=true \
+             --config=/etc/kubernetes/manifests \
+             --hostname-override=192.168.1.170 \
+             --cluster-dns=192.168.1.150 \
+             --cluster-domain=cluster.local
+           Restart=always
+           RestartSec=10
+           [Install]
+           WantedBy=multi-user.target
+
   ssh_authorized_keys:
     - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnxGbWpxBQoomQ4hD4eO5HnxM9olcoZbs70hMWHw/e5aErfyqp770GNdNe2HTWOV4pcJewCfo/F0I4xm5HIEVlEE4ml45nBMwiy9btHQ47nyXxrSln+WPpDdnv2/H154JQgrmDCrU3uj2sQGaLFGKsVZ08+XfefVC/uG056GQxco2mA/aASZ7eudPZ4lP6/Hw2O3Qz+dUW0QhYPfCUCfvb80AKpGRAwPoiWsB4AfVUKD1mXrkmVMs4LMT4GJAoIgxKcOxw5796m1YdUdsxAW62fUpO2+xUsjw7FD5HqfckqsNyijKWt9E0gZAtNDAIsOe/HGc7B9M31WK3Fy7FQjep DLX"
 install_disk: '/dev/sda'
