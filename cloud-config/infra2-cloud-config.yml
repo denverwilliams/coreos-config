@@ -6,7 +6,7 @@ cloud_config:
       # Host name for cluster --name
       name: "infra2"
       # generate a new token for each unique cluster from https://discovery.etcd.io/new?size=3
-      discovery: "https://discovery.etcd.io/38098d2f13b14907729de81e20fabe41"
+      discovery: "https://discovery.etcd.io/5834c8b4e203963690443bd63998e705"
       # multi-region and multi-cloud deployments need to use $public_ipv4
       initial-advertise-peer-urls: "http://192.168.1.172:2380"
       # listen on both the official ports and the legacy ports
@@ -58,7 +58,7 @@ cloud_config:
         1Zz1bI0Fvw3xcXL6Rc3VEPC5Ps5oaVO2qMdCyHg4zAU2ITjyAqxd31DZowB9azeC
         b2P2DtARsvdVw+hIZ88QMCe+6sE8JMK9/jjPV1LkxrQoQlGxVpOvTHVfaA==
         -----END CERTIFICATE-----
-    - path: /etc/kubernetes/ssl/infra1.ii.org.nz-worker.pem
+    - path: /etc/kubernetes/ssl/worker.pem
       owner: root:root
       permissions: 600
       content: |
@@ -80,7 +80,7 @@ cloud_config:
         Y/arJQ9VmEMts+cVapN1oaG85KdzuvG1+DKXnz16nEkN0WuIyzOpQTXJa8O0M92S
         iJ8k11WKMU7K22Y26RHL
         -----END CERTIFICATE-----
-    - path: /etc/kubernetes/ssl/infra1.ii.org.nz-worker-key.pem
+    - path: /etc/kubernetes/ssl/worker-key.pem
       owner: root:root
       permissions: 600
       content: |
