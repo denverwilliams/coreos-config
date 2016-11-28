@@ -57,7 +57,7 @@ cloud_config:
           --allow-privileged=true \
           --config=/etc/kubernetes/manifests \
           --hostname-override=192.168.1.170 \
-          --cluster-dns=192.168.1.150 \
+          --cluster-dns=10.3.0.10 \
           --cluster-domain=cluster.local
         Restart=always
         RestartSec=10
