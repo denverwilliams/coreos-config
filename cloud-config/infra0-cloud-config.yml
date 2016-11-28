@@ -6,7 +6,7 @@ cloud_config:
       # Host name for cluster --name
       name: "infra0"
       # generate a new token for each unique cluster from https://discovery.etcd.io/new?size=3
-      discovery: "https://discovery.etcd.io/38098d2f13b14907729de81e20fabe41"
+      discovery: "https://discovery.etcd.io/5834c8b4e203963690443bd63998e705"
       # multi-region and multi-cloud deployments need to use $public_ipv4
       advertise-client-urls: "http://192.168.1.170:2379"
       initial-advertise-peer-urls: "http://192.168.1.170:2380"
