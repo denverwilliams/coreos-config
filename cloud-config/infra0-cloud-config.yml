@@ -63,6 +63,83 @@ cloud_config:
         RestartSec=10
         [Install]
         WantedBy=multi-user.target
+    - path: /etc/kubernetes/ssl/ca.pem
+      owner: root:root
+      permissions: 600
+      content: |
+        -----BEGIN CERTIFICATE-----
+        MIIC9zCCAd+gAwIBAgIJAMnvubF+iJ7jMA0GCSqGSIb3DQEBCwUAMBIxEDAOBgNV
+        BAMMB2t1YmUtY2EwHhcNMTYxMTI4MDQzOTE4WhcNNDQwNDE1MDQzOTE4WjASMRAw
+        DgYDVQQDDAdrdWJlLWNhMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+        xIP+2tgaE3khqI7sLXNcQgTFEyELMEZxiwRuAQT9jyg5sBO+AJUvYAKRkgJO/sl7
+        qGKCVV1uEWhf5FNyxiJzHCErfqE3gx/Wcwx6BTPilY9TwVR2GsZlo5xumoUKlngJ
+        Ovz3yIHpjkCddu0l43vTxvsCMvJpPedCTDenScac16vjlVD+nybLWBAKBbtr/lz2
+        9iz9BtLj9so/yYg1F87zhzakRHJnF9+r3xjyH5mLk/TlHV9i1P2ryf6oJq76Tk3r
+        v1fZNFLXFoFH8mnKmbsyokh2xTHlb6lA/0tfAF0zZ9x8EXAEKweIg6zPlkqulHvz
+        Y5A+k5PLnCTYN6mN6d2rJQIDAQABo1AwTjAdBgNVHQ4EFgQUqTfPQmUrR41Y0Fpu
+        89oktQDwEucwHwYDVR0jBBgwFoAUqTfPQmUrR41Y0Fpu89oktQDwEucwDAYDVR0T
+        BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAf2YIQU26Dy2PjHXWGkmsrtw7sKeG
+        SyH5B8eu33vnc6hmLQmtETvmD/A8NQ07cZVdRb7C4VJVCQVAhgrmzzS6bu8V2Me2
+        kJpln+a21tQJODLk2Bk7iAsJvPRVgXLz2/s5SmD8Cxp8zaCjfGD4Sj3tnsm5VSDG
+        GL9yQjbFZ0XA4eNevm6PBmpbOlcBue0MgzWETiNpwaKbDoZ0RMoPZaVHuvyroORs
+        1Zz1bI0Fvw3xcXL6Rc3VEPC5Ps5oaVO2qMdCyHg4zAU2ITjyAqxd31DZowB9azeC
+        b2P2DtARsvdVw+hIZ88QMCe+6sE8JMK9/jjPV1LkxrQoQlGxVpOvTHVfaA==
+        -----END CERTIFICATE-----
+    - path: /etc/kubernetes/ssl/apiserver.pem
+      owner: root:root
+      permissions: 600
+      content: |
+        -----BEGIN CERTIFICATE-----
+        MIIDPzCCAiegAwIBAgIJAIpW5GtNZVzRMA0GCSqGSIb3DQEBCwUAMBIxEDAOBgNV
+        BAMMB2t1YmUtY2EwHhcNMTYxMTI4MDQ0MjM4WhcNMTcxMTI4MDQ0MjM4WjAZMRcw
+        FQYDVQQDDA5rdWJlLWFwaXNlcnZlcjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
+        AQoCggEBAMFONh7CjBwofY9Zq4Qz0POMol2W/jgK+73nHHSTLR3QrmuNEW6CIb3B
+        nhhpa+GuIGH+5lMVKt41aott9mVIM90GdIKarnTWEzpru7YAUWIwkG6YOjaUoWbA
+        vc722F2TcRGHv6Ay6UCZLUyAol3dgjgTwB4lvD8qBy4911XsCSU7s6Uc9xmcSTOT
+        NY7EEcjE/Il+n15DYkq5ePF0/cgXh23wHQeOlUmi2UoeZCxA+CIE/4nxWyCbkZCv
+        mqjUNbe2xNGeAXMHu4KLUp+g58gaLW/1E9Jy8hAMvPJfModvOLOA+5+BEXkOURuq
+        fZKBMEuHL0mF29YEs9HTqmNB4D7jWPcCAwEAAaOBkDCBjTAJBgNVHRMEAjAAMAsG
+        A1UdDwQEAwIF4DBzBgNVHREEbDBqggprdWJlcm5ldGVzghJrdWJlcm5ldGVzLmRl
+        ZmF1bHSCFmt1YmVybmV0ZXMuZGVmYXVsdC5zdmOCJGt1YmVybmV0ZXMuZGVmYXVs
+        dC5zdmMuY2x1c3Rlci5sb2NhbIcECgMAAYcEwKgBqjANBgkqhkiG9w0BAQsFAAOC
+        AQEAPAAzGaIkFBgdLVd7khPsK7xbk1bJXs0kumCRQTSMGU48rF6ySN5KCq8+4yVY
+        izttR3k/h2Eziyb+U5RBUomhk/95TTIhA0jC6czNMuJPPL63l7gMC0WCa19/fs52
+        PobyuXeZwN2kbNWeHT8gD5vroV80PjRPZgQMwd006X8wZxd8kCIVb9aL/8cs54ct
+        3bMTZRHgHPLg2N15uytMsTlW2Vxo1l3rDquDQ6Lj1cJNk3sqP93FcvlR7fG6ZqNE
+        xqcS2hT8DRYQfsGbszFwpy0a/00jUnahFxHRrbdgNqQe3z2/RMN34KdfvX+WvkTc
+        6R7GVloSJIaae0jRVa4nMtmncA==
+        -----END CERTIFICATE-----
+    - path: /etc/kubernetes/ssl/apiserver-key.pem
+      owner: root:root
+      permissions: 600
+      content: |
+        -----BEGIN RSA PRIVATE KEY-----
+        MIIEowIBAAKCAQEAwU42HsKMHCh9j1mrhDPQ84yiXZb+OAr7veccdJMtHdCua40R
+        boIhvcGeGGlr4a4gYf7mUxUq3jVqi232ZUgz3QZ0gpqudNYTOmu7tgBRYjCQbpg6
+        NpShZsC9zvbYXZNxEYe/oDLpQJktTICiXd2COBPAHiW8PyoHLj3XVewJJTuzpRz3
+        GZxJM5M1jsQRyMT8iX6fXkNiSrl48XT9yBeHbfAdB46VSaLZSh5kLED4IgT/ifFb
+        IJuRkK+aqNQ1t7bE0Z4Bcwe7gotSn6DnyBotb/UT0nLyEAy88l8yh284s4D7n4ER
+        eQ5RG6p9koEwS4cvSYXb1gSz0dOqY0HgPuNY9wIDAQABAoIBAC5Ysy8i0/b4Wkph
+        ZHcY+VM7d75asm77ayo33CGzG9EXNIqC0xgcyTw2zNHrjLsaRZdZRx3KaHHIetgd
+        MENOUWj/4DVkIsnOfeO26tWTM/AH1sk9ZE+ryRrawWd61Ztx+10JoA8nxbcAQtUh
+        zkwVDOCnE5vmzkCSshALMbLfGb48LEzWBAmH1Ndche+FEENo0mwtghm+h4HHgD3G
+        cBG08wgCszN+mSqucyzPPpqdF6ttN6ytIR65Vlup8vtP5M9SEkUlUw4kZZNIlf25
+        9h24tfh3/NfXSjpTPY1gjvTxSsV3MO6oLczHN8YkxJ86jsiEvxnMOUx4atU3q2pl
+        xUDBJ9kCgYEA7TU50fHhZ2l2JY2EBQCNB6pehi0/NQBwQLXtUZfTx4XUoqIRsazV
+        0xweupsx56xungkaf8mYMhL7T/hoh/ScPFnk5kIYhxNkRTLvd/CJ44FhWdGKqbJo
+        D/2O1v3y4yFQbmNuz6XFwwSVawhvU3geSX0hUmG7hlwX9nOsYA8QqRMCgYEA0J6b
+        uNXhQq0j1dMYIzFJLh9d6BlNA/OkzEq8YWvL06MhX1kgE+XtPHo9Ul90M7DknVSC
+        49Bytn3YjDqEBHMcVPbf1GChdnz3OvClDq4mzTITlUBEBe6rTv0nWkpqE0goh4jr
+        heUfha1vQPjnKRKAQCmgwGFgDASTTdj7zi99kQ0CgYAUaPsDpINXiYx/6LBOWeDI
+        oxElDGme3t3Jw52a4qx3Q32rTLSnDA8N7iJ6vfXKUFzoPjJIgokU7esv01jzMcnr
+        q3R1l4RSwwlipuJR+KF0sOI2f0AmH9KyZYfP2eP3RRuNlAKp3UKp6BAPOJeToAdD
+        HYArfXtMMUpii0turH0rfwKBgFi1CKwordcnPhSe5SWZwG9PQSP/FiN3B30izkVy
+        i8IbHIappB0x6JWNuON82TFdp2hK1jk+mniEvH6sJxSpScPLEdQBnsZ+TrYOO3Ep
+        ljAsee093W7UVJ2KwaAAAmjehvVSwCs4CRZTb/olnE13o3ck/EixXyDdFTHF8RR0
+        VyVFAoGBAL1zKlregj+Eooh12Tn2F/I7hYRfo4/WMMC7V/Y1WWkLuAJUd/VVlzCj
+        L0XM71Odqnf7Do7xRh2SOeOUJRKChz6Uvz0GG/MODxvwktiw3K+smDfW/glEO+ot
+        dUyJ2htZc6OiUf9m20CW8jk9u8U2z3L8WF4w/+w/iENtnnR1PX2S
+        -----END RSA PRIVATE KEY-----
   ssh_authorized_keys:
     - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnxGbWpxBQoomQ4hD4eO5HnxM9olcoZbs70hMWHw/e5aErfyqp770GNdNe2HTWOV4pcJewCfo/F0I4xm5HIEVlEE4ml45nBMwiy9btHQ47nyXxrSln+WPpDdnv2/H154JQgrmDCrU3uj2sQGaLFGKsVZ08+XfefVC/uG056GQxco2mA/aASZ7eudPZ4lP6/Hw2O3Qz+dUW0QhYPfCUCfvb80AKpGRAwPoiWsB4AfVUKD1mXrkmVMs4LMT4GJAoIgxKcOxw5796m1YdUdsxAW62fUpO2+xUsjw7FD5HqfckqsNyijKWt9E0gZAtNDAIsOe/HGc7B9M31WK3Fy7FQjep DLX"
 install_disk: '/dev/sda'
