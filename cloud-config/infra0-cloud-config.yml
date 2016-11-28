@@ -1,4 +1,4 @@
-hostname_prefix: "infra"
+hostname_prefix: "infra0"
 domainname: ii.org.nz
 cloud_config:
   coreos:
